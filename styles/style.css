@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i');
+@import url('../assets/loew/stylesheet.css');
+
+body {
+	font-family: 'PT Sans';
+	font-weight: normal;
+}
+
+#weather {
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+	font-size:0;
+}
+
+#weather:before {
+	content: "";
+	display:inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+
+#info {
+	font-size: 1rem;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+
+#temp {
+	font-family: 'loewheavy';
+	font-weight: normal;
+	font-size: 16rem;
+	margin: 0 auto;
+}
