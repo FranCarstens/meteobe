@@ -6,14 +6,46 @@
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	
 </head>
-<body>
+<body class="current">
+<!-- <div id="search_field">
+	<input type="text" name="search" id="search_input">
+</div> -->
 
-<div id="weather">
-	<div id="info">The temperature at your current location is:
-		<p id="temp"></p>
+
+
+<div id="weather_cube">
+
+	<div id="current" name="current">
+		<div id="info">The temperature at your current location is:
+			<p id="temp"></p>
+		</div>
 	</div>
-</div>
 
+	<div id="hourly">
+		<div id="info">The hourly forecast is:
+			<p id="temp"></p>
+		</div>
+	</div>
+
+	<div id="daily">
+		<div id="info">The daily forecast is:
+			<p id="temp"></p>
+		</div>
+	</div>
+	<div id="about">
+		<div id="info">
+		<p>Icons: http://adamwhitcroft.com/climacons/ and vicons</p>
+		</div>
+	</div>
+
+</div>
+<div id="view_menu">
+	<ul>
+		<li><button id="current_button" class="current"><span class="icon-pin">Current</span></button></li>
+		<li><button id="hourly_button" class="hourly"><span class="icon-clock">Hourly</span></button></li>
+		<li><button id="daily_button" class="daily"><span class="icon-calendar">Daily</span></button></li>
+	</ul>
+</div>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 	<script type="text/javascript" src="scripts/script.js"></script>
 </body>

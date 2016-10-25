@@ -1,19 +1,129 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i');
 @import url('../assets/loew/stylesheet.css');
+@import url('../assets/icons/style.css');
 
 body {
+	color: #97a9b2;
 	font-family: 'PT Sans';
 	font-weight: normal;
+	background-color: #000;
+
 }
 
-#weather {
+button {
+	-webkit-appearance: none;
+	border: 0;
+	width: 2rem;
+	height: 2rem;
+	padding: 0;
+	overflow: hidden;
+	cursor: pointer;
+	background-color: #97a9b2;
+	color:#384D5E;
+	border-bottom: 3px solid rgba(56, 77, 94, 0.5);
+	border-radius: 50%;
+}
+button:hover {
+	color: #97a9b2;
+	background-color: #dae3e9;
+	border-bottom: 3px solid #dae3e9;
+}
+button span:before {
+	width: 2rem;
+	height: 2rem;
+	line-height: 2rem;
+	display: block;
+	text-align: center;
+	font-size: 1rem;
+}
+
+
+#weather_cube {
+	width: 100vw;
+	height: 100vh;
+	transform-style: preserve-3d;
+	position: absolute;
+}
+
+#current, #hourly, #daily {
 	width: 100vw;
 	height: 100vh;
 	text-align: center;
-	font-size:0;
+	font-size: 0;
+	overflow: hidden;
+	transition: width 0.3s ease-in-out;
+	position: absolute;
+	transition: transform .3s linear, background-color .3s linear;
+	background-color: #283A48;
 }
 
-#weather:before {
+.current #current {
+	transform: rotateY(   0deg ) translateZ( 50vw );
+	background-color: #384D5E;
+
+}
+.current #hourly {
+	transform: rotateY(   90deg ) translateZ( 50vw );
+
+}
+.current #daily {
+	transform: rotateY(   180deg ) translateZ( 50vw );
+}
+.current #about {
+	transform: rotateY(   270deg ) translateZ( 50vw );	
+}
+
+
+.hourly #current {
+	transform: rotateY(-90deg) translateZ(50vw);
+
+}
+.hourly #hourly {
+	transform: rotateY(0deg) translateZ(50vw);
+	background-color: #384D5E;
+
+}
+.hourly #daily {
+	transform: rotateY(90deg) translateZ(50vw);
+
+}
+.current #about {
+	transform: rotateY(180deg ) translateZ( 50vw );	
+}
+
+
+
+.daily #current {
+	transform: rotateY(-180deg) translateZ(50vw);
+
+}
+.daily #hourly {
+	transform: rotateY(-90deg) translateZ(50vw);
+
+}
+.daily #daily {
+	transform: rotateY(0deg) translateZ(50vw);
+	background-color: #384D5E;
+
+}
+.current #about {
+	transform: rotateY(90deg ) translateZ( 50vw );	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#current:before, #hourly:before, #daily:before {
 	content: "";
 	display:inline-block;
 	height: 100%;
@@ -27,10 +137,20 @@ body {
 	vertical-align: middle;
 }
 
+#view_menu {
+	position: fixed;
+	top: 1rem;
+	left: 1rem;
+	z-index: 999;
+	-webkit-transform: translateZ(2000px)
+}
+#view_menu li {
+	display: inline-block;
+}
 
 #temp {
 	font-family: 'loewheavy';
 	font-weight: normal;
-	font-size: 16rem;
+	font-size: 2rem;
 	margin: 0 auto;
 }
