@@ -131,7 +131,7 @@ button span:before {
 }
 
 
-#info {
+.info {
 	font-size: 1rem;
 	display: inline-block;
 	vertical-align: middle;
@@ -148,7 +148,7 @@ button span:before {
 	display: inline-block;
 }
 
-#temp {
+.temp {
 	font-family: 'loewheavy';
 	font-weight: normal;
 	font-size: 2rem;

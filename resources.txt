@@ -1,0 +1,1 @@
+https://addyosmani.com/blog/understanding-mvc-and-mvp-for-javascript-and-backbone-developers/
