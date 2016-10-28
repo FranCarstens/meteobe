@@ -1,0 +1,30 @@
+.icon-clear-day:before {
+	content: "\e93e";
+}
+.icon-clear-night:before {
+	content: "\e939";
+}
+.icon-rain:before {
+	content: "\e91c";
+}
+.icon-snow:before {
+	content: "\e923";
+}
+.icon-sleet:before {
+	content: "\e90d";
+}
+.icon-wind:before {
+	content: "\e949";
+}
+.icon-fog:before {
+	content: "\e90c";
+}
+.icon-cloudy:before {
+	content: "\e929";
+}
+.icon-partly-cloudy-day:before {
+	content: "\e924";
+}
+.icon-partly-cloudy-night:before {
+	content: "\e916";
+}

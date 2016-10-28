@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>Meteobe Weather App</title>
 	<link rel="stylesheet" type="text/css" href="styles/reset.css">
 	<link rel="stylesheet" type="text/css" href="styles/style.css">
 	
@@ -11,25 +11,33 @@
 	<input type="text" name="search" id="search_input">
 </div> -->
 
+<h1><span>Meteobe</span>Weather App</h1>
 
+<div id="view_menu">
+	<ul>
+		<li><button id="current_button" class="current"><span class="icon-pin">Current</span></button></li>
+		<li><button id="hourly_button" class="hourly"><span class="icon-clock">Hourly</span></button></li>
+		<li><button id="daily_button" class="daily"><span class="icon-calendar">Daily</span></button></li>
+	</ul>
+</div>
 
 <div id="weather_cube">
 
 	<div id="current" name="current">
-		<div class="info">The temperature at your current location is:
-			<p class="temp"></p>
+		<div class="info">
+			<!-- current data goes here -->
 		</div>
 	</div>
 
 	<div id="hourly">
-		<div class="info">The hourly forecast is:
-			<p class="temp"></p>
+		<div class="info">
+			<!-- hourly data goes here -->
 		</div>
 	</div>
 
 	<div id="daily">
-		<div class="info">The daily forecast is:
-			<p class="temp"></p>
+		<div class="info">
+			<!-- daily data goes here -->
 		</div>
 	</div>
 	<div id="about">
@@ -39,13 +47,7 @@
 	</div>
 
 </div>
-<div id="view_menu">
-	<ul>
-		<li><button id="current_button" class="current"><span class="icon-pin">Current</span></button></li>
-		<li><button id="hourly_button" class="hourly"><span class="icon-clock">Hourly</span></button></li>
-		<li><button id="daily_button" class="daily"><span class="icon-calendar">Daily</span></button></li>
-	</ul>
-</div>
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>

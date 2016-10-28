@@ -38,6 +38,7 @@ var STATE = {
 		'view': '',
 		'timezone': '',
 		'timezoneOffset': '',
+		'location': '',
 		'baseURL': 'https://api.darksky.net/forecast/',
 		'apiKey': 'bebcaaaee24ff81211d1700c0720964d',
 		'days': ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
@@ -81,6 +82,27 @@ var calcTime = function(timeString) {
 
 }
 
+var meridianTime = function(number) {
+
+	time = number % 12
+	if (number === 0) {
+		time = '12am'
+	}
+
+	else if (number === 12) {
+		time = '12pm'
+	}
+
+	else if (number > 11) {
+		time = time + 'pm'
+	}
+	
+	else time = time + 'am'
+	
+	return time
+
+}
+
 var changeView = function() {
 	
 	STATE.view = this.className
@@ -115,14 +137,27 @@ var LocationWeather = Backbone.Model.extend({
 // VIEWS
 
 var CurrentView = Backbone.View.extend({
-	'el': document.querySelector('#current .temp'),
+	'bg': document.querySelector('#current'),
+	'el': document.querySelector('#current .info'),
 	'_render': function() {
 		var stats = this.collection.attributes
 		var weather = stats.currently
 		docBody.className = STATE.view
 		STATE.timezone = stats.timezone
 		STATE.timezoneOffset = stats.offset
-		this.el.innerHTML = Math.round(weather.temperature)
+		
+		console.log(weather)
+
+		var sourceString = ""
+
+		sourceString += '<p><span class="summary icon-' + weather.icon + '">' + weather.summary + '</span>'
+		sourceString += '<span class="location">' + (STATE.location ? STATE.location : 'Your Location') + '</span>'
+		sourceString += '<span class="temperature">' + Math.round(weather.temperature) + '</span>'
+		sourceString += '<span class="felt">Felt: ' + Math.round(weather.apparentTemperature) + '</span></p>'
+		
+		this.el.innerHTML = sourceString
+		this.bg.className = weather.icon
+		// 
 		console.log(STATE)
 
 	},
@@ -133,7 +168,8 @@ var CurrentView = Backbone.View.extend({
 	}
 })
 var HourlyView = Backbone.View.extend({
-	'el': document.querySelector('#hourly .temp'),
+	'bg': document.querySelector('#hourly'),
+	'el': document.querySelector('#hourly .info'),
 	'_render': function() {
 		var stats = this.collection.attributes
 		var weather = stats.hourly.data
@@ -143,13 +179,40 @@ var HourlyView = Backbone.View.extend({
 
 		console.log(weather)
 
-		for ( var i = 0; i < 24; i++ ) {
+		var sourceString = ""
+			thisTemp = Math.round(weather[0].temperature),
+			feltTemp = Math.round(weather[0].apparentTemperature),
+			thisTime = meridianTime((calcTime(weather[0].time)).getHours())
 
-			var thisTime = (calcTime(weather[i].time)).getHours(),
+		sourceString += '<div class="this_hour">'
+		sourceString += '<p><span class="hour_time">' + thisTime + '</span>'
+		sourceString += '<span class="summary icon-' + weather[0].icon + '">' + weather[0].summary + '</span>'
+		sourceString += '<span class="location">' + (STATE.location ? STATE.location : 'Your Location') + '</span>'
+		sourceString += '<span class="temperature">' + thisTemp + '</span>'
+		sourceString += '<span class="felt">Felt: ' + feltTemp + '</span></p>'
+		sourceString += '</div>'
+		sourceString += '<div class="other_hours">'
+
+		for ( var i = 1; i < 24; i++ ) {
+
+			var thisTime = meridianTime((calcTime(weather[i].time)).getHours()),
+				feltTemp = Math.round(weather[i].apparentTemperature),
 				thisTemp = Math.round(weather[i].temperature)
-			this.el.innerHTML += '<p>' + thisTime + ':' + thisTemp + '</p>'
+
+
+			sourceString += '<div class="an_hour">'
+			sourceString += '<div><span class="hour_time">' + thisTime + '</span></div>'
+			sourceString += '<div><span class="summary icon-' + weather[i].icon + '">' + weather[i].summary + '</span></div>'
+			sourceString += '<div><span class="temperature">' + thisTemp + '</span>'
+			sourceString += '<span class="felt">Felt: ' + thisTemp + '</span></div>'
+			sourceString += '</div>'
 
 		}
+		sourceString += '</div>'
+
+
+		this.el.innerHTML = sourceString
+		this.bg.className = weather[0].icon
 
 	},
 	'initialize': function() {
